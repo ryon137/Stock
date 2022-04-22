@@ -1,6 +1,8 @@
 package com.example.Stock.service;
 
+import com.example.Stock.model.Company;
 import com.example.Stock.model.Stock;
+import com.example.Stock.repository.CompanyRepository;
 import com.example.Stock.repository.StockRepository;
 
 import org.bson.types.ObjectId;
@@ -14,14 +16,15 @@ import java.util.*;
 @Service
 public class StockService {
     private StockRepository stockRepository;
+    @Autowired
+    private CompanyRepository companyRepository;
 
     @Autowired
     public StockService(StockRepository stockRepository) {
         this.stockRepository = stockRepository;
     }
 
-
-    public Optional<Stock> getStock(UUID stockId) {
+    public Optional<Stock> getStock(ObjectId stockId) {
         return stockRepository.findById(String.valueOf(stockId));
     }
 
@@ -40,11 +43,7 @@ public class StockService {
     //display max, min, and avg stock price btw time frame
     public List<Double> companyStockMaxMinAvg(LocalDateTime startDate, LocalDateTime endDate,ObjectId companyCode) {
         List<Double> stocks = getCompanyStockPrice(startDate, endDate, companyCode);
-//        double sum=0;
-//        for(int i=0;i<=stocks.size();i++){
-//            sum+=stocks.get(i);
-//        }
-//        double avg = sum/ stocks.size();
+
         double max = stocks.stream().mapToDouble(a -> a).max().getAsDouble();
         double min = stocks.stream().mapToDouble(a -> a).min().getAsDouble();
         double avg = stocks.stream().mapToDouble(a -> a).average().getAsDouble();
@@ -57,11 +56,11 @@ public class StockService {
 
 
     public Stock addStock(Stock stock) {
-        System.out.println(LocalDateTime.now());
+        stock.setDate(LocalDateTime.now());
+        Optional<Company> company = companyRepository.findById(String.valueOf(stock.getCompanyCode()));
+        Company company1 = company.get();
+        company1.setRelatedStock(stock);
+        companyRepository.save(company1);
         return stockRepository.save(stock);
     }
-//    public void deleteStock(int stockId){
-//        stockRepository.deleteById(String.valueOf(stockId));
-//        System.out.println("Stock is deleted");
-//    }
 }
