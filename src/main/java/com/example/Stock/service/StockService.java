@@ -56,6 +56,7 @@ public class StockService {
 
 
     public Stock addStock(Stock stock) {
+        stock.setDate(LocalDateTime.now());
         Optional<Company> company = companyRepository.findById(String.valueOf(stock.getCompanyCode()));
         Company company1 = company.get();
         company1.setRelatedStock(stock);
