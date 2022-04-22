@@ -1,4 +1,4 @@
-package com.example.Company_ViewDelete;
+package com.example.Stock;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

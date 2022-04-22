@@ -1,17 +1,16 @@
-package com.example.Company_ViewDelete.model;
+package com.example.Stock.model;
 
+import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import java.util.Objects;
-import java.util.Optional;
-import java.util.UUID;
 
 public class Company {
 
     @Id
-    private UUID companyCode;
+    private ObjectId companyCode;
     @NotBlank(message = "mandatory")
     private String companyName;
     @NotBlank(message = "mandatory")
@@ -23,71 +22,61 @@ public class Company {
     private String companyWebsite;
     @NotBlank(message = "mandatory")
     private String listedStockExchange;
-    private Optional<Stock> relatedStock;
+    private Stock relatedStock;
 
-    public Company(UUID companyCode, String companyName, String companyCEO, Double companyTurnover, String companyWebsite, String listedStockExchange, Optional<Stock> relatedStock) {
-        this.companyCode = companyCode;
-        this.companyName = companyName;
-        this.companyCEO = companyCEO;
-        this.companyTurnover = companyTurnover;
-        this.companyWebsite = companyWebsite;
-        this.listedStockExchange = listedStockExchange;
-        this.relatedStock = relatedStock;
+    public ObjectId getCompanyCode() {
+        return companyCode;
     }
 
-    public UUID getCompanyCode() {
-        return companyCode;
+    public void setCompanyCode(ObjectId companyCode) {
+        this.companyCode = companyCode;
     }
 
     public String getCompanyName() {
         return companyName;
     }
 
-    public String getCompanyCEO() {
-        return companyCEO;
-    }
-
-    public Double getCompanyTurnover() {
-        return companyTurnover;
-    }
-
-    public String getCompanyWebsite() {
-        return companyWebsite;
-    }
-
-    public String getListedStockExchange() {
-        return listedStockExchange;
-    }
-
-    public Optional<Stock> getRelatedStock() {
-        return relatedStock;
-    }
-
-    public void setCompanyCode(UUID companyCode) {
-        this.companyCode = companyCode;
-    }
-
     public void setCompanyName(String companyName) {
         this.companyName = companyName;
+    }
+
+    public String getCompanyCEO() {
+        return companyCEO;
     }
 
     public void setCompanyCEO(String companyCEO) {
         this.companyCEO = companyCEO;
     }
 
+    public Double getCompanyTurnover() {
+        return companyTurnover;
+    }
+
     public void setCompanyTurnover(Double companyTurnover) {
         this.companyTurnover = companyTurnover;
+    }
+
+    public String getCompanyWebsite() {
+        return companyWebsite;
     }
 
     public void setCompanyWebsite(String companyWebsite) {
         this.companyWebsite = companyWebsite;
     }
 
+    public String getListedStockExchange() {
+        return listedStockExchange;
+    }
+
     public void setListedStockExchange(String listedStockExchange) {
         this.listedStockExchange = listedStockExchange;
     }
 
-    public void setRelatedStock(Optional<Stock> relatedStock) {
+    public Stock getRelatedStock() {
+        return relatedStock;
+    }
+
+    public void setRelatedStock(Stock relatedStock) {
         this.relatedStock = relatedStock;
     }
 

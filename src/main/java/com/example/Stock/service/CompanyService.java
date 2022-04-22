@@ -1,7 +1,7 @@
-package com.example.Company_ViewDelete.service;
+package com.example.Stock.service;
 
-import com.example.Company_ViewDelete.model.Company;
-import com.example.Company_ViewDelete.repository.CompanyRepository;
+import com.example.Stock.model.Company;
+import com.example.Stock.repository.CompanyRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
