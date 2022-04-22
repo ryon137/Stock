@@ -16,13 +16,13 @@ import java.util.*;
 @Service
 public class StockService {
     private StockRepository stockRepository;
+    @Autowired
     private CompanyRepository companyRepository;
 
     @Autowired
     public StockService(StockRepository stockRepository) {
         this.stockRepository = stockRepository;
     }
-
 
     public Optional<Stock> getStock(ObjectId stockId) {
         return stockRepository.findById(String.valueOf(stockId));
