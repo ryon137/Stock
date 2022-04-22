@@ -1,6 +1,8 @@
 package com.example.Stock.service;
 
+import com.example.Stock.model.Company;
 import com.example.Stock.model.Stock;
+import com.example.Stock.repository.CompanyRepository;
 import com.example.Stock.repository.StockRepository;
 
 import org.bson.types.ObjectId;
@@ -14,6 +16,7 @@ import java.util.*;
 @Service
 public class StockService {
     private StockRepository stockRepository;
+    private CompanyRepository companyRepository;
 
     @Autowired
     public StockService(StockRepository stockRepository) {
@@ -53,7 +56,10 @@ public class StockService {
 
 
     public Stock addStock(Stock stock) {
-        System.out.println(LocalDateTime.now());
+        Optional<Company> company = companyRepository.findById(String.valueOf(stock.getCompanyCode()));
+        Company company1 = company.get();
+        company1.setRelatedStock(stock);
+        companyRepository.save(company1);
         return stockRepository.save(stock);
     }
 }
