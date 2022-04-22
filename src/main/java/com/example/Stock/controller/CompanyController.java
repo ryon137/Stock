@@ -1,7 +1,7 @@
-package com.example.Company_ViewDelete.controller;
+package com.example.Stock.controller;
 
-import com.example.Company_ViewDelete.model.Company;
-import com.example.Company_ViewDelete.service.CompanyService;
+import com.example.Stock.model.Company;
+import com.example.Stock.service.CompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
