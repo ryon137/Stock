@@ -1,7 +1,6 @@
 package com.example.Stock.controller;
 
 import com.example.Stock.model.Stock;
-import com.example.Stock.service.CompanyService;
 import com.example.Stock.service.StockService;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +9,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -18,8 +16,6 @@ import java.util.List;
 @RequestMapping("/api/v1.0/market/stock")
 public class StockController {
     private StockService stockService;
-
-    private CompanyService companyService;
 
     @Autowired
     public StockController(StockService stockService) {

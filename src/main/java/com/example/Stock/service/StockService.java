@@ -21,7 +21,7 @@ public class StockService {
     }
 
 
-    public Optional<Stock> getStock(UUID stockId) {
+    public Optional<Stock> getStock(ObjectId stockId) {
         return stockRepository.findById(String.valueOf(stockId));
     }
 
@@ -40,11 +40,7 @@ public class StockService {
     //display max, min, and avg stock price btw time frame
     public List<Double> companyStockMaxMinAvg(LocalDateTime startDate, LocalDateTime endDate,ObjectId companyCode) {
         List<Double> stocks = getCompanyStockPrice(startDate, endDate, companyCode);
-//        double sum=0;
-//        for(int i=0;i<=stocks.size();i++){
-//            sum+=stocks.get(i);
-//        }
-//        double avg = sum/ stocks.size();
+
         double max = stocks.stream().mapToDouble(a -> a).max().getAsDouble();
         double min = stocks.stream().mapToDouble(a -> a).min().getAsDouble();
         double avg = stocks.stream().mapToDouble(a -> a).average().getAsDouble();
@@ -60,8 +56,4 @@ public class StockService {
         System.out.println(LocalDateTime.now());
         return stockRepository.save(stock);
     }
-//    public void deleteStock(int stockId){
-//        stockRepository.deleteById(String.valueOf(stockId));
-//        System.out.println("Stock is deleted");
-//    }
 }
